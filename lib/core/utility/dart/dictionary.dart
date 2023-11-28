@@ -1,0 +1,1 @@
+typedef Dictionary = Map<String, dynamic>;
