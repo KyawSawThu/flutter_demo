@@ -12,7 +12,7 @@ abstract class BaseViewState<T extends StatefulWidget>
     extends VisibilityAwareState<T> {
   BaseViewModel viewModel();
 
-  ViewConfig viewConfig() => ViewConfig();
+  SafeAreaConfig safeAreaConfig() => SafeAreaConfig();
 
   Widget navigationView() => Container();
 
@@ -90,7 +90,7 @@ abstract class BaseViewState<T extends StatefulWidget>
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
     return BaseView(
-      viewConfig: viewConfig(),
+      safeAreaConfig: safeAreaConfig(),
       viewModel: viewModel(),
       navigationView: navigationView(),
       contentView: contentView(context),

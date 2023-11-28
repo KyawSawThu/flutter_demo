@@ -30,10 +30,10 @@ class _LoginViewState extends BaseViewState<LoginView> {
   BaseViewModel viewModel() => _viewModel;
 
   @override
-  ViewConfig viewConfig() {
-    return ViewConfig(
-      ignoreTopSafeArea: true,
-      ignoreBottomSafeArea: true,
+  SafeAreaConfig safeAreaConfig() {
+    return SafeAreaConfig(
+      enableTopSafeArea: true,
+      enableBottomSafeArea: true,
     );
   }
 

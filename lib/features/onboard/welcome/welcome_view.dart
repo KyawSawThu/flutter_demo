@@ -23,8 +23,8 @@ class _WelcomeViewState extends BaseViewState<WelcomeView> {
   BaseViewModel viewModel() => BaseViewModel();
 
   @override
-  ViewConfig viewConfig() =>
-      ViewConfig(ignoreTopSafeArea: true, ignoreBottomSafeArea: true);
+  SafeAreaConfig safeAreaConfig() =>
+      SafeAreaConfig(enableTopSafeArea: true, enableBottomSafeArea: true);
 
   @override
   Widget contentView(BuildContext context) {

@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/core/base/base_view_model.dart';
 
-class ViewConfig {
-  Color? safeAreaColor;
-  Color? backgroundColor;
-  bool ignoreTopSafeArea;
-  bool ignoreBottomSafeArea;
+class SafeAreaConfig {
+  Color? topSafeAreaColor;
+  Color? bottomSafeAreaColor;
+  bool enableTopSafeArea;
+  bool enableBottomSafeArea;
 
-  ViewConfig({
-    this.safeAreaColor,
-    this.backgroundColor,
-    this.ignoreTopSafeArea = false,
-    this.ignoreBottomSafeArea = false,
+  SafeAreaConfig({
+    this.topSafeAreaColor = Colors.white,
+    this.bottomSafeAreaColor = Colors.white,
+    this.enableTopSafeArea = true,
+    this.enableBottomSafeArea = true,
   });
 }
 
 class BaseView extends StatelessWidget {
-  final ViewConfig viewConfig;
+  final SafeAreaConfig safeAreaConfig;
   final Widget? navigationView;
   final Widget contentView;
   final BaseViewModel? viewModel;
 
   const BaseView({
     super.key,
-    required this.viewConfig,
+    required this.safeAreaConfig,
     this.navigationView,
     required this.contentView,
     this.viewModel,
@@ -34,27 +34,27 @@ class BaseView extends StatelessWidget {
     final safeArea = MediaQuery.of(context).padding;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: viewConfig.backgroundColor,
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              viewConfig.ignoreTopSafeArea
+              safeAreaConfig.enableTopSafeArea
                   ? Container()
                   : Container(
                       height: safeArea.top,
-                      color: viewConfig.safeAreaColor,
+                      color: safeAreaConfig.topSafeAreaColor,
                     ),
               navigationView ?? Container(),
               Expanded(
                 child: contentView,
               ),
-              viewConfig.ignoreBottomSafeArea
+              safeAreaConfig.enableBottomSafeArea
                   ? Container()
                   : Container(
                       height: safeArea.bottom,
-                      color: viewConfig.backgroundColor,
+                      color: safeAreaConfig.bottomSafeAreaColor,
                     ),
             ],
           ),
