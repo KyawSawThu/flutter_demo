@@ -41,21 +41,21 @@ class BaseView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               safeAreaConfig.enableTopSafeArea
-                  ? Container()
-                  : Container(
+                  ? Container(
                       height: safeArea.top,
                       color: safeAreaConfig.topSafeAreaColor,
-                    ),
+                    )
+                  : Container(),
               navigationView ?? Container(),
               Expanded(
                 child: contentView,
               ),
               safeAreaConfig.enableBottomSafeArea
-                  ? Container()
-                  : Container(
+                  ? Container(
                       height: safeArea.bottom,
                       color: safeAreaConfig.bottomSafeAreaColor,
-                    ),
+                    )
+                  : Container(),
             ],
           ),
           Container(

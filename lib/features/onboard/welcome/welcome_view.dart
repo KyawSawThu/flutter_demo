@@ -5,7 +5,6 @@ import 'package:flutter_demo/core/base/base_view_model.dart';
 import 'package:flutter_demo/core/base/base_view_state.dart';
 import 'package:flutter_demo/core/coordinator/coordinator.dart';
 import 'package:flutter_demo/core_ui/button/app_button.dart';
-import 'package:flutter_demo/domain/_auth/auth_route.dart';
 import 'package:flutter_demo/domain/_onboard/onboard_route.dart';
 import 'package:flutter_demo/resources/app_asset.dart';
 import 'package:flutter_demo/resources/app_color.dart';
@@ -24,7 +23,7 @@ class _WelcomeViewState extends BaseViewState<WelcomeView> {
 
   @override
   SafeAreaConfig safeAreaConfig() =>
-      SafeAreaConfig(enableTopSafeArea: true, enableBottomSafeArea: true);
+      SafeAreaConfig(enableTopSafeArea: false, enableBottomSafeArea: false);
 
   @override
   Widget contentView(BuildContext context) {
