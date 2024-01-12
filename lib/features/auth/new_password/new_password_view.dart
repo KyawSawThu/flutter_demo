@@ -5,6 +5,7 @@ import 'package:flutter_demo/core/base/base_view_state.dart';
 import 'package:flutter_demo/core_ui/button/app_button.dart';
 import 'package:flutter_demo/core_ui/navigation_view/back_navigation_view.dart';
 import 'package:flutter_demo/core_ui/textfield/app_textfield.dart';
+import 'package:flutter_demo/core_ui/textfield/password_textfield.dart';
 import 'package:flutter_demo/domain/_auth/auth_route.dart';
 import 'package:flutter_demo/features/auth/new_password/components/password_change_success_sheet.dart';
 import 'package:flutter_demo/features/auth/new_password/new_password_view_model.dart';
@@ -47,9 +48,9 @@ class _NewPasswordViewState extends BaseViewState<NewPasswordView> {
             style: AppTextStyle.osL16.copyWith(height: 1.4),
           ),
           SizedBox(height: 58),
-          AppTextField(placeholder: "New Password"),
+          PasswordTextField(placeholder: "New Password"),
           SizedBox(height: 20),
-          AppTextField(placeholder: "Confirm Password"),
+          PasswordTextField(placeholder: "Confirm Password"),
           SizedBox(height: 106),
           Container(
             alignment: Alignment.center,

@@ -30,8 +30,10 @@ class BackNavigationView extends NavigationView {
       padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
       child: Stack(
         children: [
-          GestureDetector(
-            onTap: app.coordinator.dismiss,
+          RawMaterialButton(
+            constraints: BoxConstraints(),
+            enableFeedback: false,
+            onPressed: app.coordinator.dismiss,
             child: Container(
               decoration: BoxDecoration(
                 color: AppColor.white,
@@ -52,10 +54,6 @@ class BackNavigationView extends NavigationView {
               ),
             ),
           ),
-          // GestureDetector(
-          //   onTap: app.coordinator.dismiss,
-          //   child: ,
-          // ),
           alignment == TitleAlignment.center
               ? _centerTitleView()
               : _leftTitleView(),

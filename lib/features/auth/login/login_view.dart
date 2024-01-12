@@ -1,5 +1,6 @@
 import 'package:flutter_demo/core/coordinator/coordinator.dart';
 import 'package:flutter_demo/core/extensions/stream_extensions.dart';
+import 'package:flutter_demo/core_ui/textfield/password_textfield.dart';
 import 'package:flutter_demo/domain/_onboard/onboard_route.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:flutter/material.dart';
@@ -145,7 +146,7 @@ class _LoginViewState extends BaseViewState<LoginView> {
     return StreamBuilder(
       stream: _output.formError,
       builder: (context, snapshot) {
-        return AppTextField(
+        return PasswordTextField(
           placeholder: "Password",
           controller: _passwordTextController,
           error: snapshot.data?.error(LoginFormField.password),
