@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/app/app_dependency.dart';
 import 'package:flutter_demo/core/coordinator/coordinator.dart';
+import 'package:flutter_demo/core_ui/button/animated_button.dart';
 import 'package:flutter_demo/core_ui/image/app_image.dart';
 import 'package:flutter_demo/core_ui/navigation_view/navigation_view.dart';
 import 'package:flutter_demo/resources/app_asset.dart';
@@ -51,6 +52,10 @@ class BackNavigationView extends NavigationView {
               ),
             ),
           ),
+          // GestureDetector(
+          //   onTap: app.coordinator.dismiss,
+          //   child: ,
+          // ),
           alignment == TitleAlignment.center
               ? _centerTitleView()
               : _leftTitleView(),

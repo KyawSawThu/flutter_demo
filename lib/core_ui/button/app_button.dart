@@ -11,6 +11,7 @@ class AppButton extends StatefulWidget {
   final ButtonController? controller;
   final Function? onPressed;
   final bool isEnabled;
+  final bool shrink;
 
   const AppButton({
     super.key,
@@ -21,6 +22,7 @@ class AppButton extends StatefulWidget {
     this.controller,
     this.onPressed,
     this.isEnabled = true,
+    this.shrink = true,
   });
 
   @override
@@ -69,6 +71,7 @@ class _AppButtonState extends State<AppButton> {
       child: AnimatedContainer(
         duration: Duration(milliseconds: 150),
         child: Container(
+          width: widget.shrink ? null : double.infinity,
           padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
           decoration: BoxDecoration(
             color: _isPressed ? backgroundColor.withOpacity(0.5) : backgroundColor,

@@ -1,5 +1,6 @@
 import 'package:flutter_demo/core/coordinator/coordinator.dart';
 import 'package:flutter_demo/core/extensions/stream_extensions.dart';
+import 'package:flutter_demo/domain/_onboard/onboard_route.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/app/app_dependency.dart';
@@ -71,6 +72,7 @@ class _LoginViewState extends BaseViewState<LoginView> {
     super.observeOutput();
     _output.success.listen((event) {
       print("login success");
+      app.coordinator.replacePresent(OnboardRoute.tab);
     });
     _output.isValidForm.listen((event) {
       print(event);

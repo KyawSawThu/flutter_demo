@@ -3,6 +3,7 @@ import 'package:flutter_demo/app/app_dependency.dart';
 import 'package:flutter_demo/core/base/base_view_model.dart';
 import 'package:flutter_demo/core/base/base_view_state.dart';
 import 'package:flutter_demo/core/coordinator/coordinator.dart';
+import 'package:flutter_demo/core_ui/alert_dialog/app_alert_dialog.dart';
 import 'package:flutter_demo/core_ui/button/app_button.dart';
 import 'package:flutter_demo/core_ui/navigation_view/back_navigation_view.dart';
 import 'package:flutter_demo/core_ui/textfield/app_textfield.dart';
@@ -53,6 +54,7 @@ class _ForgotPasswordViewState extends BaseViewState<ForgotPasswordView> {
             child: AppButton(
               title: "Continue",
               onPressed: () {
+                // showSuccessAlert(message: "This a sample success alert dialog message with two lines.");
                 app.coordinator.push(AuthRoute.verifyOTP);
               },
             ),

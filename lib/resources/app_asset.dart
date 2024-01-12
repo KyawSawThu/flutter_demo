@@ -39,4 +39,7 @@ class AppAsset {
   // Eye
   static String get icEyeOpen => "$_icons/ic_eye_open.svg";
   static String get icEyeClose => "$_icons/ic_eye_close.svg";
+
+  // Icons
+  static String get iconPasswordChangeSuccess => "$_icons/ic_password_change_success.svg";
 }

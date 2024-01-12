@@ -21,7 +21,7 @@ class _TabViewState extends State<TabView> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 4, vsync: this, animationDuration: Duration.zero);
     _tabController.addListener(() {
       setState(() {
         _currentIndex = _tabController.index;
@@ -44,6 +44,7 @@ class _TabViewState extends State<TabView> with TickerProviderStateMixin {
     return Scaffold(
       bottomNavigationBar: _tabMenuView(),
       body: TabBarView(
+        physics: NeverScrollableScrollPhysics(),
         controller: _tabController,
         children: const [
           HomeView(),

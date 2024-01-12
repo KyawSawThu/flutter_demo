@@ -68,7 +68,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   ValidationResult<LoginForm, List<LoginFormError>> _validate(LoginForm form) {
-    List<ValidationResult> result = [];
+    List<ValidationResult> validation = [];
 
     final emailValidation = Validation(value: form.email)
         .apply(
@@ -94,7 +94,7 @@ class LoginViewModel extends BaseViewModel {
           LoginFormError.invalidNumberPassword(),
         );
 
-    result.addAll([emailValidation, passwordValidation]);
-    return result.validate<LoginForm, LoginFormError>(form);
+    validation.addAll([emailValidation, passwordValidation]);
+    return validation.validate<LoginForm, LoginFormError>(form);
   }
 }
