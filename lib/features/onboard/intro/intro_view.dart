@@ -36,8 +36,8 @@ class _IntroViewState extends BaseViewState<IntroView> {
   BaseViewModel viewModel() => _viewModel;
 
   @override
-  ViewConfig viewConfig() =>
-      ViewConfig(ignoreTopSafeArea: true, ignoreBottomSafeArea: true);
+  SafeAreaConfig safeAreaConfig() =>
+      SafeAreaConfig(enableTopSafeArea: false, enableBottomSafeArea: false);
 
   @override
   void prepareInput() {

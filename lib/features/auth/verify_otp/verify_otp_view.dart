@@ -4,7 +4,9 @@ import 'package:flutter_demo/core/base/base_view.dart';
 import 'package:flutter_demo/core/base/base_view_model.dart';
 import 'package:flutter_demo/core/base/base_view_state.dart';
 import 'package:flutter_demo/core/coordinator/coordinator.dart';
+import 'package:flutter_demo/core/rx/controllers/button_controller.dart';
 import 'package:flutter_demo/core_ui/button/app_button.dart';
+import 'package:flutter_demo/core_ui/button/app_text_button.dart';
 import 'package:flutter_demo/core_ui/navigation_view/back_navigation_view.dart';
 import 'package:flutter_demo/core_ui/otp/otp_view.dart';
 import 'package:flutter_demo/domain/_auth/auth_route.dart';
@@ -21,12 +23,31 @@ class VerifyOTPView extends StatefulWidget {
 
 class _VerifyOTPViewState extends BaseViewState<VerifyOTPView> {
   final _viewModel = VerifyOTPViewModel();
+  late VerifyOTPOutput _output;
+  final _resendButtonController = ButtonController();
+  final _verifyButtonController = ButtonController();
 
   @override
   BaseViewModel viewModel() => _viewModel;
 
   @override
   Widget navigationView() => BackNavigationView();
+
+  @override
+  void prepareInput() {
+    super.prepareInput();
+    final input = VerifyOTPInput(
+      onStart: view.onStart,
+      onTapResend: _resendButtonController.onTap,
+    );
+
+    _output = _viewModel.transform(input);
+  }
+
+  @override
+  void observeOutput() {
+    super.observeOutput();
+  }
 
   @override
   Widget contentView(BuildContext context) {
@@ -38,7 +59,7 @@ class _VerifyOTPViewState extends BaseViewState<VerifyOTPView> {
       padding: EdgeInsets.symmetric(horizontal: 32),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 60),
           Text("Verification code", style: AppTextStyle.osM24),
@@ -58,17 +79,41 @@ class _VerifyOTPViewState extends BaseViewState<VerifyOTPView> {
           //   decoration: BoxDecoration(border: Border.all(color: AppColor.lightGrey)),
           // ),
           SizedBox(height: 48),
-          Text("Resend in 00:10", style: AppTextStyle.osL16),
+          StreamBuilder(
+            stream: _output.didCountDownFinished,
+            builder: (context, snapshot) {
+              return (snapshot.data ?? false)
+                  ? _resendButtonView()
+                  : _resendCountDownView();
+            },
+          ),
           SizedBox(height: 106),
           Container(
             alignment: Alignment.center,
             child: AppButton(
               title: "Verify",
-              onPressed: () => app.coordinator.removePush(AuthRoute.newPassword, routes: [AuthRoute.forgotPassword, AuthRoute.verifyOTP]),
+              onPressed: () => app.coordinator.removePush(AuthRoute.newPassword,
+              routes: [AuthRoute.forgotPassword, AuthRoute.verifyOTP]),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _resendCountDownView() {
+    return StreamBuilder(
+      stream: _output.countDown,
+      builder: (context, snapshot) {
+        return Text(snapshot.data ?? "", style: AppTextStyle.osL16);
+      },
+    );
+  }
+
+  Widget _resendButtonView() {
+    return AppTextButton(
+      title: "Resend",
+      controller: _resendButtonController,
     );
   }
 }

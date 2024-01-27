@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/core/base/base_view_state.dart';
 import 'package:flutter_demo/core_ui/alert_dialog/alert_dialog_data.dart';
+import 'package:flutter_demo/core_ui/button/app_button.dart';
+import 'package:flutter_demo/resources/app_text_style.dart';
 
 class AppAlertDialog extends StatelessWidget {
   final AlertDialogData data;
@@ -29,9 +31,15 @@ class AppAlertDialog extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(data.title),
-          SizedBox(height: 8),
-          Text(data.message),
+          Text(data.title, style: AppTextStyle.osR18),
+          SizedBox(height: 12),
+          Text(data.message, style: AppTextStyle.osR14, textAlign: TextAlign.center,),
+          SizedBox(height: 12),
+          Row(
+            children: [
+              AppButton(title: data.actions?.first.title ?? "Cancel"),
+            ],
+          )
         ],
       ),
     );
@@ -42,6 +50,7 @@ extension BaseViewAlert on BaseViewState {
   showSuccessAlert({required String message}) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) => AppAlertDialog(
         data: AlertDialogData.success(message),
       ),
@@ -51,6 +60,7 @@ extension BaseViewAlert on BaseViewState {
   showErrorAlert({required String message}) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) => AppAlertDialog(
         data: AlertDialogData.error(message),
       ),
@@ -60,6 +70,7 @@ extension BaseViewAlert on BaseViewState {
   showFailAlert({required String message}) {
     showDialog(
       context: context,
+      barrierDismissible: false,
       builder: (context) => AppAlertDialog(
         data: AlertDialogData.fail(message),
       ),
@@ -73,7 +84,7 @@ extension BaseViewAlert on BaseViewState {
   }) {
     showDialog(
       context: context,
-      barrierDismissible: true,
+      barrierDismissible: false,
       builder: (context) => AppAlertDialog(
         data: AlertDialogData(
           title: title,

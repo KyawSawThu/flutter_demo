@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/resources/app_color.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPView extends StatefulWidget {
@@ -36,7 +37,8 @@ class OTPViewState extends State<OTPView> {
       animationDuration: Duration.zero,
       enableActiveFill: false,
       textStyle: widget.textStyle,
-      cursorColor: Colors.red,
+      cursorWidth: 1.5,
+      cursorColor: AppColor.black,
       pinTheme: _pinTheme(),
       controller: textEditingController,
       onCompleted: (code) {
@@ -58,12 +60,16 @@ class OTPViewState extends State<OTPView> {
     return PinTheme(
       fieldHeight: 58,
       fieldWidth: 58,
-      shape: PinCodeFieldShape.circle,
-      borderWidth: 0.5,
+      borderWidth: 1,
+      activeBorderWidth: 1,
+      inactiveBorderWidth: 1,
+      selectedBorderWidth: 1,
+      errorBorderWidth: 1,
       activeColor: Colors.black,
       inactiveColor: Colors.grey,
       selectedColor: Colors.black,
       errorBorderColor: Colors.red,
+      shape: PinCodeFieldShape.circle,
     );
   }
 }

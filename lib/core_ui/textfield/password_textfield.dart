@@ -4,7 +4,7 @@ import 'package:flutter_demo/core/rx/controllers/textfield_controller.dart';
 import 'package:flutter_demo/resources/app_color.dart';
 import 'package:flutter_demo/resources/app_text_style.dart';
 
-class AppTextField extends StatefulWidget {
+class PasswordTextField extends StatefulWidget {
   final String placeholder;
   final String? error;
   final bool isEnabled;
@@ -14,7 +14,7 @@ class AppTextField extends StatefulWidget {
   final TextInputType keyboard;
   final List<TextInputFormatter>? formatters;
 
-  AppTextField({
+  const PasswordTextField({
     super.key,
     this.placeholder = "",
     this.error,
@@ -27,10 +27,10 @@ class AppTextField extends StatefulWidget {
   });
 
   @override
-  State<AppTextField> createState() => _AppTextFieldState();
+  State<PasswordTextField> createState() => _PasswordTextFieldState();
 }
 
-class _AppTextFieldState extends State<AppTextField> {
+class _PasswordTextFieldState extends State<PasswordTextField> {
   bool _showTitlePlaceholder = false;
 
   @override
@@ -60,11 +60,11 @@ class _AppTextFieldState extends State<AppTextField> {
         widget.error == null
             ? SizedBox(height: 20)
             : Container(
-                height: 20,
-                alignment: Alignment.bottomLeft,
-                child:
-                    Text(widget.error ?? "", style: AppTextStyle.osL12.darkRed),
-              )
+          height: 20,
+          alignment: Alignment.bottomLeft,
+          child:
+          Text(widget.error ?? "", style: AppTextStyle.osL12.darkRed),
+        )
       ],
     );
   }
@@ -87,7 +87,10 @@ class _AppTextFieldState extends State<AppTextField> {
         },
         keyboardType: widget.keyboard,
         inputFormatters: widget.formatters,
-        obscureText: false,
+        obscureText: true,
+        obscuringCharacter: "●",
+        autocorrect: false,
+        enableSuggestions: false,
         decoration: widget._none.copyWith(
           hintText: widget.placeholder,
           hintStyle: AppTextStyle.osL16.darkBlack,
@@ -101,13 +104,13 @@ class _AppTextFieldState extends State<AppTextField> {
   }
 }
 
-extension AppTextFieldDecoration on AppTextField {
+extension AppTextFieldDecoration on PasswordTextField {
   InputDecoration get _none => InputDecoration(
-        border: InputBorder.none,
-        focusedBorder: InputBorder.none,
-        enabledBorder: InputBorder.none,
-        errorBorder: InputBorder.none,
-        disabledBorder: InputBorder.none,
-        contentPadding: EdgeInsets.symmetric(vertical: 10),
-      );
+    border: InputBorder.none,
+    focusedBorder: InputBorder.none,
+    enabledBorder: InputBorder.none,
+    errorBorder: InputBorder.none,
+    disabledBorder: InputBorder.none,
+    contentPadding: EdgeInsets.symmetric(vertical: 10),
+  );
 }
