@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/app/app_dependency.dart';
-import 'package:flutter_demo/core/base/base_view.dart';
 import 'package:flutter_demo/core/base/base_view_model.dart';
 import 'package:flutter_demo/core/base/base_view_state.dart';
 import 'package:flutter_demo/core/coordinator/coordinator.dart';
@@ -11,7 +10,6 @@ import 'package:flutter_demo/core_ui/navigation_view/back_navigation_view.dart';
 import 'package:flutter_demo/core_ui/otp/otp_view.dart';
 import 'package:flutter_demo/domain/_auth/auth_route.dart';
 import 'package:flutter_demo/features/auth/verify_otp/verify_otp_view_model.dart';
-import 'package:flutter_demo/resources/app_color.dart';
 import 'package:flutter_demo/resources/app_text_style.dart';
 
 class VerifyOTPView extends StatefulWidget {
@@ -74,10 +72,6 @@ class _VerifyOTPViewState extends BaseViewState<VerifyOTPView> {
             onComplete: (e) {},
             onChange: (e) {},
           ),
-          // Container(
-          //   height: 58,
-          //   decoration: BoxDecoration(border: Border.all(color: AppColor.lightGrey)),
-          // ),
           SizedBox(height: 48),
           StreamBuilder(
             stream: _output.didCountDownFinished,
